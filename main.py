@@ -73,11 +73,12 @@ class admin:
     @classmethod
     def operador(cls, operador):
         if cls.number1 != "" and cls.number2 != "":
-            cls.number1 == cls.resolveOperator(cls.operator)
-            cls.text.set(str(cls.number1))
             cls.operator = operador
+            cls.number1 = cls.resolveOperator(cls.operator)
+            cls.text.set(str(cls.number1))
             cls.number2 = ""
-        elif operador == "-" and operador is not None:
+        elif operador == "-" and (
+                (cls.operator is None and cls.number1 == "") or (cls.operator is not None and cls.number2 == "")):
             cls.numero("-")
         elif cls.number1 != "":
             cls.operator = operador
